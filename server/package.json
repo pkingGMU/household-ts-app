@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "description": "express-server-api",
+  "version": "1.0.0",
+  "author": " <artoria@artoria>",
+  "license": "MIT",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Stupid Test\" && exit 1"
+  },
+  "devDependencies": {
+    "express": "^5.1.0"
+  }
+}
