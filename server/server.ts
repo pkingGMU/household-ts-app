@@ -13,21 +13,33 @@ db.serialize(() => {
         "CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT)",
     );
 
-    const stmt = db.prepare("INSERT INTO tasks (task) VALUES (?)");
+    // const stmt = db.prepare("INSERT INTO tasks (task) VALUES (?)");
 
-    stmt.run("task1");
+    // stmt.run("task1");
 
-    stmt.finalize();
+    // stmt.finalize();
 
-    db.each("SELECT id, task FROM tasks", (err, row) => {
-        if (typeof row !== "undefined") {
-            console.log(`${row.id}: ${row.task}`);
-        }
-    });
+    // db.each("SELECT id, task FROM tasks", (err, row) => {
+    // if (typeof row !== "undefined") {
+    //     console.log(`${row.id}: ${row.task}`);
+    // }
+    // });
 });
 
 app.get("/hello", (req, res) => {
     res.send("Hello World");
+});
+
+app.get("/api/tasks", (req, res) => {
+    console.log("Hey your getting :3");
+
+    res.status(200).send();
+});
+
+app.post("/api/tasks", (req, res) => {
+    console.log("Hey your posting :3");
+
+    res.status(200).send();
 });
 
 //
