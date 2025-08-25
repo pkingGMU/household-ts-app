@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import ListTasks from "./ListTasks";
+import { useState } from "react";
 
 type AddTaskProps = {
     onAddTask: (title: string) => void;
@@ -12,13 +11,14 @@ export default function AddTask({ onAddTask }: AddTaskProps) {
         <>
             <input
                 placeholder="Add Task"
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
 
             <button
                 onClick={() => {
-                    setTitle("");
                     onAddTask(title);
+                    setTitle("");
                 }}
             >
                 Add

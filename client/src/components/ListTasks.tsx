@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 type ListTaskProps = {
     tasks: {
         id: number;
