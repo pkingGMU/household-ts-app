@@ -1,16 +1,19 @@
 type ListTaskProps = {
     tasks: {
         id: number;
-        text: string;
+        task: string;
     }[];
+    handleClick: () => void;
 };
 
-export default function ListTasks({ tasks }: ListTaskProps) {
+export default function ListTasks({ tasks, handleClick }: ListTaskProps) {
     return (
         <>
             <ul>
                 {tasks.map((task) => (
-                    <li key={task.id}>{task.text}</li>
+                    <li key={task.id} onClick={() => handleClick()}>
+                        {task.task}
+                    </li>
                 ))}
             </ul>
         </>

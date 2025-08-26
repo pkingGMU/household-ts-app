@@ -2,6 +2,7 @@ import express from "express";
 import sqlite3 from "sqlite3";
 
 const app = express();
+app.use(express.json());
 const port = 3000;
 
 // Setup SQLite
@@ -33,13 +34,22 @@ app.get("/hello", (req, res) => {
 app.get("/api/tasks", (req, res) => {
     console.log("Hey your getting :3");
 
-    res.status(200).send();
+    db.all("Select * FROM tasks", [], (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        console.log(rows);
+        res.json(rows);
+    });
 });
 
 app.post("/api/tasks", (req, res) => {
     console.log("Hey your posting :3");
 
-    res.status(200).send();
+    db.run("INSERT INTO tasks (task) VALUES (?)", [req.body.task]);
+
+    res.status(200).json({ id: this.lastID, task: req.body.task });
 });
 
 //
