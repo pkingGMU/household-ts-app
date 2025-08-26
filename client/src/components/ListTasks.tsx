@@ -3,7 +3,7 @@ type ListTaskProps = {
         id: number;
         task: string;
     }[];
-    handleClick: () => void;
+    handleClick: (itemId: number) => void;
 };
 
 export default function ListTasks({ tasks, handleClick }: ListTaskProps) {
@@ -11,7 +11,7 @@ export default function ListTasks({ tasks, handleClick }: ListTaskProps) {
         <>
             <ul>
                 {tasks.map((task) => (
-                    <li key={task.id} onClick={() => handleClick()}>
+                    <li key={task.id} onClick={() => handleClick(task.id)}>
                         {task.task}
                     </li>
                 ))}

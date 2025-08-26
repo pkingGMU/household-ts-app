@@ -26,14 +26,18 @@ export default function TaskManager() {
         fetchTasks();
     };
 
-    const handleDeleteTask = async () => {
+    const handleDeleteTask = async (itemId: number) => {
+        setTasks((prevTasks) => prevTasks.filter((t) => t.id !== itemId));
+
         console.log("Clicked Task");
-        const response = await fetch("api/tasks/${itemId}", {
+        await fetch(`api/tasks/${itemId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
             },
         });
+
+        fetchTasks();
     };
     return (
         <>

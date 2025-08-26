@@ -52,20 +52,24 @@ app.post("/api/tasks", (req, res) => {
     res.status(200).json({ id: this.lastID, task: req.body.task });
 });
 
-app.delete("/api/tasks/:id", (req,res) => {
+app.delete("/api/tasks/:id", (req, res) => {
     const id = req.params.id;
 
-    db.run("DELETE FROM tasks WHERE id = ? ", [id], function(err) {
+    db.run("DELETE FROM tasks WHERE id = ? ", [id], function (err) {
         if (err) {
             console.error(err.message);
             return res.status(500).json({ error: err.message });
         }
-        if (this.changes === 0) { // Check if any rows were affected
+        if (this.changes === 0) {
+            // Check if any rows were affected
             return res.status(404).json({ message: "Item not found" });
         }
-        res.status(200).json({ message: "Item deleted successfully", changes: this.changes });
-
-})
+        res.status(200).json({
+            message: "Item deleted successfully",
+            changes: this.changes,
+        });
+    });
+});
 
 //
 // Serving Static Files
