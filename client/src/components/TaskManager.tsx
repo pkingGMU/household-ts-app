@@ -26,14 +26,20 @@ export default function TaskManager() {
         fetchTasks();
     };
 
-    const handleClick = () => {
+    const handleDeleteTask = async () => {
         console.log("Clicked Task");
+        const response = await fetch("api/tasks/${itemId}", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
     };
     return (
         <>
             <h2>Task Manager</h2>
             <AddTask onAddTask={handleAddTask} />
-            <ListTasks tasks={tasks} handleClick={handleClick} />
+            <ListTasks tasks={tasks} handleClick={handleDeleteTask} />
         </>
     );
 }
