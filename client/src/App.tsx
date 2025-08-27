@@ -1,11 +1,11 @@
 import "./App.css";
 import TaskManager from "./components/TaskManager.tsx";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import VisitorManager from "./components/VisitorManager.tsx";
 
 function HomePage() {
   return (
     <div>
-      <img src="THISISAJOKE.jpg" />
       <h1>BakuDeku Club</h1>
     </div>
   );
@@ -20,6 +20,15 @@ function TaskManagerPage() {
   );
 }
 
+function VisitorPage() {
+  return (
+    <>
+      <h1>Hello Visitor</h1>
+      <VisitorManager />
+    </>
+  );
+}
+
 function App() {
   return (
     <>
@@ -27,11 +36,13 @@ function App() {
         <nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/TaskManagerPage">Task Manager</NavLink>
+          <NavLink to="/VisitorPage">Visitor Page</NavLink>
         </nav>
 
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/TaskManagerPage" element={<TaskManagerPage />} />
+          <Route path="/VisitorPage" element={<VisitorPage />} />
         </Routes>
       </BrowserRouter>
     </>
