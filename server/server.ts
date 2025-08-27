@@ -2,7 +2,6 @@ import express from "express";
 import sqlite3 from "sqlite3";
 import { fileURLToPath } from "url";
 import path, { dirname, join } from "path";
-
 const app = express();
 app.use(express.json());
 const port = 3000;

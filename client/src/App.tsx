@@ -3,7 +3,12 @@ import TaskManager from "./components/TaskManager.tsx";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 
 function HomePage() {
-  return <h1>BakuDeku Club</h1>;
+  return (
+    <div>
+      <img src="THISISAJOKE.jpg" />
+      <h1>BakuDeku Club</h1>
+    </div>
+  );
 }
 
 function TaskManagerPage() {

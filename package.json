@@ -7,10 +7,9 @@
     "main": "app/main.js",
     "scripts": {
         "dev:server": "nodemon --exec tsx server/server.ts",
-        "dev:client": "npm run dev --prefix ./client",
-        "dev": "echo 'Hello from my household app' && concurrently \"npm run dev:client\" \"npm run dev:server\" ",
+        "dev:client": "npm run dev --prefix ./client/",
+        "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\" ",
         "build": "npm run build --prefix ./client",
-
         "start": "tsx ./server/server.ts"
     },
     "devDependencies": {
