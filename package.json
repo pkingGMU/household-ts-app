@@ -1,0 +1,24 @@
+{
+    "name": "Household-App-Combined",
+    "description": "Client/Server",
+    "version": "1.0.0",
+    "author": " <artoria@artoria>",
+    "license": "MIT",
+    "main": "app/main.js",
+    "scripts": {
+        "dev:server": "nodemon --exec tsx server/server.ts",
+        "dev:client": "npm run dev --prefix ./client",
+        "dev": "echo 'Hello from my household app' && concurrently \"npm run dev:client\" \"npm run dev:server\" ",
+        "build": "npm run build --prefix ./client",
+
+        "start": "tsx ./server/server.ts"
+    },
+    "devDependencies": {
+        "concurrently": "^9.2.1",
+        "nodemon": "^3.1.10",
+        "tsx": "^4.20.5"
+    },
+    "dependencies": {
+        "typescript": "^5.9.2"
+    }
+}
