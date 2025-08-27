@@ -1,9 +1,9 @@
 import "./App.css";
 import TaskManager from "./components/TaskManager.tsx";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 
 function HomePage() {
-  return <h1>Home Page</h1>;
+  return <h1>BakuDeku Club</h1>;
 }
 
 function TaskManagerPage() {
@@ -20,8 +20,8 @@ function App() {
     <>
       <BrowserRouter>
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/TaskManagerPage">Task Manager</Link>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/TaskManagerPage">Task Manager</NavLink>
         </nav>
 
         <Routes>

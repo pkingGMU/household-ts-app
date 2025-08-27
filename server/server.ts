@@ -1,5 +1,7 @@
 import express from "express";
 import sqlite3 from "sqlite3";
+import { fileURLToPath } from "url";
+import path, { dirname, join } from "path";
 
 const app = express();
 app.use(express.json());
@@ -43,13 +45,21 @@ app.get("/api/tasks", (req, res) => {
         res.json(rows);
     });
 });
-
 app.post("/api/tasks", (req, res) => {
-    console.log("Hey your posting :3");
+    console.log("Hey you're posting :3");
 
-    db.run("INSERT INTO tasks (task) VALUES (?)", [req.body.task]);
-
-    res.status(200).json({ id: this.lastID, task: req.body.task });
+    db.run(
+        "INSERT INTO tasks (task) VALUES (?)",
+        [req.body.task],
+        function (err) {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: "Database error" });
+            }
+            // 'this.lastID' is available here
+            res.status(200).json({ id: this.lastID, task: req.body.task });
+        },
+    );
 });
 
 app.delete("/api/tasks/:id", (req, res) => {
@@ -73,8 +83,15 @@ app.delete("/api/tasks/:id", (req, res) => {
 
 //
 // Serving Static Files
-const __dirname = "../client/dist/";
-app.use(express.static(__dirname));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const clientBuildPath = join(__dirname, "../client/dist/");
+app.use(express.static(clientBuildPath));
+
+app.get("/{*any}", (_, res) => {
+    res.sendFile(path.resolve(clientBuildPath, "index.html"));
+});
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
