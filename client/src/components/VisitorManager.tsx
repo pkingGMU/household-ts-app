@@ -11,10 +11,17 @@ export default function VisitorManager() {
         setCards([{ id: 1, text: "Bruh", img: "" }]);
     };
 
+    const handleDeleteVisitorCard = (id: number) => {
+        console.log(`Deleting: ${id}`);
+    };
+
     return (
         <>
             <AddVisitorTask onSubmit={handleAddVisitorCard} />
-            <ListVisitorCards cards={cards} />
+            <ListVisitorCards
+                cards={cards}
+                onDelete={handleDeleteVisitorCard}
+            />
         </>
     );
 }
