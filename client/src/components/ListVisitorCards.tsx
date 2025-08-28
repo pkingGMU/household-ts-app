@@ -1,20 +1,17 @@
-import VisitorCard from "./VisitorCard.tsx";
-import type { VisitorCardType } from "./VisitorCard.tsx";
-
-const cards: VisitorCardType[] = [
-    { id: 1, text: "Henlo", img: "" },
-    { id: 2, text: "Bruh", img: "" },
-];
-
-export default function ListVisitorCards() {
+import VisitorCard, { type VisitorCardType } from "./VisitorCard.tsx";
+type ListVisitorCardsProps = {
+    cards: VisitorCardType[] | null;
+};
+export default function ListVisitorCards({ cards }: ListVisitorCardsProps) {
     return (
         <>
             <ul>
-                {cards.map((visitor) => (
-                    <li key={visitor.id}>
-                        <VisitorCard {...visitor} />
-                    </li>
-                ))}
+                {cards &&
+                    cards.map((visitor: any) => (
+                        <li key={visitor.id}>
+                            <VisitorCard {...visitor} />
+                        </li>
+                    ))}
             </ul>
         </>
     );
