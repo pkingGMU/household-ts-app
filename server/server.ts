@@ -39,8 +39,10 @@ db.serialize(() => {
         "CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT)",
     );
 
+    db.run("DROP TABLE IF EXISTS visitors");
+
     db.run(
-        "CREATE TABLE IF NOT EXISTS visitors (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT NULL, img BLOB NULL)",
+        "CREATE TABLE IF NOT EXISTS visitors (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT NULL, name TEXT NULL, img BLOB NULL, date TEXT NOT NULL)",
     );
 
     // const stmt = db.prepare("INSERT INTO tasks (task) VALUES (?)");
@@ -107,11 +109,18 @@ app.delete("/api/tasks/:id", (req, res) => {
         });
     });
 });
-type VisitorRow = { id: number; text: string; img: string | null };
+type VisitorRow = {
+    id: number;
+    text: string;
+    img: string | null;
+    name: string;
+};
 type VisitorResponse = {
     id: number;
     text: string;
     imgUrl: string | null;
+    name: string;
+    date: string;
 };
 
 // Visitor Database
@@ -127,7 +136,9 @@ app.get("/api/visitors", (req, res) => {
             (visitor: VisitorRow) => ({
                 id: visitor.id,
                 text: visitor.text,
+                name: visitor.name,
                 imgUrl: visitor.img,
+                date: visitor.date,
             }),
         );
         res.json(visitors);
@@ -137,16 +148,23 @@ app.get("/api/visitors", (req, res) => {
 app.post("/api/visitors", upload.single("eventImage"), (req, res) => {
     const imgFile = req.file;
     const textValue = req.body.text;
-    console.log(imgFile);
-    if (!textValue) {
+    const nameValue = req.body.name;
+    let newDate: string =
+        new Date().toLocaleString("en-US", {
+            month: "short",
+            day: "2-digit",
+        }) + "";
+
+    console.log(nameValue);
+    if (!textValue || !nameValue) {
         return res.status(400).json({ error: "No file or text provided" });
     }
 
     const imagePath = imgFile ? `/data/uploads/${imgFile.filename}` : null;
 
     db.run(
-        "INSERT INTO visitors (text, img) VALUES (?, ?)",
-        [textValue, imagePath],
+        "INSERT INTO visitors (text, name, img, date) VALUES (?, ?, ?, ?)",
+        [textValue, nameValue, imagePath, newDate],
         function (err) {
             if (err) {
                 console.error(err.message);
@@ -156,6 +174,7 @@ app.post("/api/visitors", upload.single("eventImage"), (req, res) => {
             res.status(200).json({
                 id: this.lastID,
                 text: textValue,
+                name: nameValue,
                 img: imgFile ? imgFile.filename : null,
             });
         },

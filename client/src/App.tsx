@@ -20,10 +20,10 @@ function TaskManagerPage() {
   );
 }
 
-function VisitorPage() {
+function FriendJournal() {
   return (
     <>
-      <h1>Hello Visitor</h1>
+      <h1>Friend Journal</h1>
       <VisitorManager />
     </>
   );
@@ -36,13 +36,13 @@ function App() {
         <nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/TaskManagerPage">Task Manager</NavLink>
-          <NavLink to="/VisitorPage">Visitor Page</NavLink>
+          <NavLink to="/FriendJournal">Friend Journal</NavLink>
         </nav>
 
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/TaskManagerPage" element={<TaskManagerPage />} />
-          <Route path="/VisitorPage" element={<VisitorPage />} />
+          <Route path="/FriendJournal" element={<FriendJournal />} />
         </Routes>
       </BrowserRouter>
     </>

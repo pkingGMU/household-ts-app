@@ -11,7 +11,7 @@ export default function ListVisitorCards({
         <>
             <ul>
                 {cards &&
-                    cards.map((visitor: any) => (
+                    [...cards].reverse().map((visitor: any) => (
                         <li key={visitor.id}>
                             <VisitorCard {...visitor} />
                             <button onClick={() => onDelete(visitor.id)}>

@@ -1,22 +1,17 @@
-import { useState } from "react";
-
 type UploadImageProps = {
     selectImage: (file: File) => void;
-    selectedImage: File | null;
+    img: File | null;
 };
 
-export default function UploadImage({
-    selectImage,
-    selectedImage,
-}: UploadImageProps) {
+export default function UploadImage({ selectImage, img }: UploadImageProps) {
     return (
         <>
             <div>
-                {selectedImage && (
+                {img && (
                     <img
                         width="200"
                         height="200"
-                        src={URL.createObjectURL(selectedImage)}
+                        src={URL.createObjectURL(img)}
                     />
                 )}
             </div>
@@ -28,7 +23,6 @@ export default function UploadImage({
                     if (file) {
                         console.log(file);
                         selectImage(file);
-
                     }
                 }}
             />{" "}

@@ -16,14 +16,14 @@ nav {
 nav a {
 }
 
-ul {
+#root ul {
   list-style-type: none;
-
+  width: 100%;
   padding: 0;
+  margin: 0;
 }
 
 li {
-  margin-bottom: 1vh;
 }
 
 a {
@@ -32,17 +32,37 @@ a {
 }
 
 .VisitorCard {
-  display: flex;
-  flex-direction: row;
   border: 2px solid white;
   border-radius: 10px;
   align-items: center;
-  justify-content: center;
-  margin-top: 10px;
+  max-width: 100%;
+  padding: 1rem;
+}
+
+.VisitorCard .Text .Title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.VisitorCard .Text {
+  margin-bottom: 2vh;
+}
+
+.VisitorCard p {
+  margin: 0;
+}
+
+.Text .Message {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  text-align: left;
+  font-size: 14px;
 }
 
 .VisitorCard img {
-  max-width: 50vw;
+  max-width: 100%;
+  margin: 0;
 }
 
 #root .AddVisitorCard {
@@ -52,6 +72,7 @@ a {
   min-height: 20vh;
   max-height: 60vh;
   width: 90vw;
+  margin-bottom: 3vh;
 }
 
 .AddVisitorCard input {

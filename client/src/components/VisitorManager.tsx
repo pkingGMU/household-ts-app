@@ -20,6 +20,7 @@ export default function VisitorManager() {
 
     const handleAddVisitorCard = async (
         visitorText: string,
+        visitorName: string,
         visitorImg: File,
     ) => {
         console.log("Adding Visitor Card");
@@ -27,6 +28,7 @@ export default function VisitorManager() {
         const formData = new FormData();
         formData.append("eventImage", visitorImg);
         formData.append("text", visitorText);
+        formData.append("name", visitorName);
         console.log(formData);
         await fetch("/api/visitors", {
             method: "POST",
