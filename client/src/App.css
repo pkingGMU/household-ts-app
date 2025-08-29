@@ -1,12 +1,19 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
   display: flex;
+  max-width: 1280px;
+  width: 100vw;
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
   flex-direction: column;
   align-items: center;
-  justify-content: space-betwee;
+}
+nav {
+  width: 100%;
+  margin: 1rem;
+}
+
+nav a {
 }
 
 ul {
@@ -25,7 +32,6 @@ a {
 }
 
 .VisitorCard {
-  width: 100%;
   display: flex;
   flex-direction: row;
   border: 2px solid white;
@@ -35,20 +41,34 @@ a {
   margin-top: 10px;
 }
 
+.VisitorCard img {
+  max-width: 50vw;
+}
+
+#root .AddVisitorCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 20vh;
+  max-height: 60vh;
+  width: 90vw;
+}
+
+.AddVisitorCard input {
+  font-size: 16px;
+  height: 20%;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
 li:hover {
   color: red;
   cursor: default;
 }
 
-nav {
-  width: 100%;
-}
-
-nav a {
-}
-
 img {
   margin-top: 3vh;
+  margin-bottom: 3vh;
 }
 
 @media (prefers-reduced-motion: no-preference) {
