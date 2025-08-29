@@ -11,8 +11,11 @@
     "test": "echo \"Stupid Test\" && exit 1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/multer": "^2.0.0",
     "@types/node": "^24.3.0",
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
@@ -20,6 +23,8 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "sqlite3": "^5.1.7"
+    "multer": "^2.0.2",
+    "sqlite3": "^5.1.7",
+    "tsc": "^2.0.4"
   }
 }

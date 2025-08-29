@@ -1,18 +1,95 @@
 #root {
+  display: flex;
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100vw;
+  margin: 0;
+  padding: 1rem;
   text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+nav {
+  width: 100%;
+  margin: 1rem;
 }
 
-ul {
+nav a {
+}
+
+#root ul {
   list-style-type: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+}
+
+a {
+  margin-right: 1vw;
+  margin-left: 1vw;
+}
+
+.VisitorCard {
+  border: 2px solid white;
+  border-radius: 10px;
+  align-items: center;
+  max-width: 100%;
+  padding: 1rem;
+}
+
+.VisitorCard .Text .Title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.VisitorCard .Text {
+  margin-bottom: 2vh;
+}
+
+.VisitorCard p {
+  margin: 0;
+}
+
+.Text .Message {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  text-align: left;
+  font-size: 14px;
+}
+
+.VisitorCard img {
+  max-width: 100%;
+  margin: 0;
+}
+
+#root .AddVisitorCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 20vh;
+  max-height: 60vh;
+  width: 90vw;
+  margin-bottom: 3vh;
+}
+
+.AddVisitorCard input {
+  font-size: 16px;
+  height: 20%;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
 }
 
 li:hover {
   color: red;
   cursor: default;
-  background-color: pink;
+}
+
+img {
+  margin-top: 3vh;
+  margin-bottom: 3vh;
 }
 
 @media (prefers-reduced-motion: no-preference) {

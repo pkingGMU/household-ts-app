@@ -3,7 +3,12 @@ import AddTask from "./AddTask.tsx";
 import ListTasks from "./ListTasks.tsx";
 
 export default function TaskManager() {
-    const [tasks, setTasks] = useState([{ id: 1, task: "text" }]);
+    type Task = {
+        id: number;
+        task: string;
+    };
+
+    const [tasks, setTasks] = useState<Task[]>([]);
 
     useEffect(() => {
         fetchTasks();
@@ -27,7 +32,9 @@ export default function TaskManager() {
     };
 
     const handleDeleteTask = async (itemId: number) => {
-        setTasks((prevTasks) => prevTasks.filter((t) => t.id !== itemId));
+        if (tasks.length > 0) {
+            setTasks((prevTasks) => prevTasks.filter((t) => t.id !== itemId));
+        }
 
         console.log("Clicked Task");
         await fetch(`api/tasks/${itemId}`, {
