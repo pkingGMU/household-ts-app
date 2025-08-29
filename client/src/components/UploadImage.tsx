@@ -2,10 +2,13 @@ import { useState } from "react";
 
 type UploadImageProps = {
     selectImage: (file: File) => void;
+    selectedImage: File | null;
 };
 
-export default function UploadImage({ selectImage }: UploadImageProps) {
-    const [selectedImage, setSelectedImage] = useState<File | null>(null);
+export default function UploadImage({
+    selectImage,
+    selectedImage,
+}: UploadImageProps) {
     return (
         <>
             <div>
@@ -24,8 +27,8 @@ export default function UploadImage({ selectImage }: UploadImageProps) {
                     const file = event.target.files?.[0];
                     if (file) {
                         console.log(file);
-                        setSelectedImage(file);
                         selectImage(file);
+
                     }
                 }}
             />{" "}

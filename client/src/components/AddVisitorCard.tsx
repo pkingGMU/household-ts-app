@@ -14,21 +14,25 @@ export default function AddVisitorCard({ onSubmit }: AddVisitorCardProps) {
 
     return (
         <>
-            <h3>Hello From Add Visitor Card Section</h3>
-            <input
-                type="text"
-                placeholder="Add a message!"
-                onChange={(e) => setText(e.target.value)}
-            />
-            <UploadImage selectImage={selectImage} />
-            <button
-                type="submit"
-                onClick={() => {
-                    img && onSubmit(text, img);
-                }}
-            >
-                Submit
-            </button>
+            <div className="AddVisitorCard">
+                <input
+                    type="text"
+                    placeholder="Add a message!"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                />
+                <UploadImage selectImage={selectImage} />
+                <button
+                    type="submit"
+                    onClick={() => {
+                        img && onSubmit(text, img);
+                        setText("");
+                        setImg(null);
+                    }}
+                >
+                    Submit
+                </button>
+            </div>
         </>
     );
 }
