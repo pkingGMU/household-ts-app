@@ -1,15 +1,18 @@
 export interface VisitorCardType {
     id: number;
-    img: string;
+    imgUrl: string;
     text: string;
 }
 
-export default function VisitorCard({ id, text, img }: VisitorCardType) {
+export default function VisitorCard({ id, text, imgUrl }: VisitorCardType) {
+    console.log(imgUrl);
+
     return (
         <>
             <div className="VisitorCard">
                 <p>{`Visitor ${id}:`}</p> <p>{text}</p>
-                {img && <img src={img} />}
+                <p>{imgUrl}</p>
+                {imgUrl && <img src={imgUrl} />}
             </div>
         </>
     );

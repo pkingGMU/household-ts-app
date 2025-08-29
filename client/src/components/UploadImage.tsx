@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function UploadImage() {
+type UploadImageProps = {
+    selectImage: (file: File) => void;
+};
+
+export default function UploadImage({ selectImage }: UploadImageProps) {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     return (
         <>
@@ -21,6 +25,7 @@ export default function UploadImage() {
                     if (file) {
                         console.log(file);
                         setSelectedImage(file);
+                        selectImage(file);
                     }
                 }}
             />{" "}
