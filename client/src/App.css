@@ -20,7 +20,7 @@ nav a {
   list-style-type: none;
   width: 100%;
   padding: 0;
-  margin: 0;
+  margin-top: 2vh;
 }
 
 li {
@@ -70,7 +70,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   min-height: 20vh;
-  max-height: 60vh;
+  max-height: 90vh;
   width: 90vw;
   margin-bottom: 3vh;
 }
