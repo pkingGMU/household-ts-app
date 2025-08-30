@@ -1,4 +1,5 @@
 import VisitorCard, { type VisitorCardType } from "./VisitorCard.tsx";
+import { useAdmin } from "./AdminPanel.tsx";
 type ListVisitorCardsProps = {
     cards: VisitorCardType[] | null;
     onDelete: (id: number) => void;
@@ -7,6 +8,8 @@ export default function ListVisitorCards({
     cards,
     onDelete,
 }: ListVisitorCardsProps) {
+    const { admin, setAdmin } = useAdmin();
+
     return (
         <>
             <ul>
@@ -14,9 +17,11 @@ export default function ListVisitorCards({
                     [...cards].reverse().map((visitor: any) => (
                         <li key={visitor.id}>
                             <VisitorCard {...visitor} />
-                            <button onClick={() => onDelete(visitor.id)}>
-                                Delete
-                            </button>
+                            {admin && (
+                                <button onClick={() => onDelete(visitor.id)}>
+                                    Delete
+                                </button>
+                            )}
                         </li>
                     ))}
             </ul>

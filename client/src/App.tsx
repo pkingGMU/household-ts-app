@@ -31,6 +31,10 @@ function FriendJournal() {
   );
 }
 
+function AdminPanelPage() {
+  return <AdminPanel />;
+}
+
 function App() {
   const [admin, setAdmin] = useState<boolean>(false);
   const adminValue = { admin, setAdmin };
@@ -39,17 +43,18 @@ function App() {
     <>
       <BrowserRouter>
         <AdminContext.Provider value={adminValue}>
-          <AdminPanel />
           <nav>
             <NavLink to="/">Home</NavLink>
-            <NavLink to="/TaskManagerPage">Task Manager</NavLink>
+            {admin && <NavLink to="/TaskManagerPage">Task Manager</NavLink>}
             <NavLink to="/FriendJournal">Friend Journal</NavLink>
+            <NavLink to="/AdminPanelPage">Admin</NavLink>
           </nav>
 
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/TaskManagerPage" element={<TaskManagerPage />} />
             <Route path="/FriendJournal" element={<FriendJournal />} />
+            <Route path="/AdminPanelPage" element={<AdminPanelPage />} />
           </Routes>
         </AdminContext.Provider>
       </BrowserRouter>
