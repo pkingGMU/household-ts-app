@@ -1,3 +1,27 @@
+:root {
+  /* Base Backgrounds */
+  --background-color: #2e2a26;
+  --input-div-background-color: #3c322d;
+  /* Text */
+  --text-color: #f5e4d7;
+  --muted-text-color: #cbbba4;
+
+  /* Navigation */
+  --nav-background-color: #763739;
+  --nav-background-color2: #68563e;
+
+  /* Inputs */
+  --input-background-color: #f5e4d7;
+  --input-border-color: #5e4238;
+  /* Buttons */
+  --submit-background-color: #a34d4d;
+  --submit-hover-background-color: #bf5c5c;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
 #root {
   display: flex;
   max-width: 1280px;
@@ -7,13 +31,26 @@
   text-align: center;
   flex-direction: column;
   align-items: center;
+  background-color: var(--background-color);
 }
-nav {
-  width: 100%;
-  margin: 1rem;
+
+h1 {
+  color: var(--text-color);
+  font-size: 30px;
+  text-shadow: 0px 0px 10px var(--input-border-color);
 }
 
 nav a {
+  color: var(--text-color);
+  background-color: var(--nav-background-color);
+  border: 1px solid var(--text-color);
+  border-radius: 10px;
+  padding: 0.2rem;
+}
+
+nav {
+  width: 100%;
+  margin: 1rem;
 }
 
 #root ul {
@@ -32,17 +69,26 @@ a {
 }
 
 .VisitorCard {
-  border: 2px solid white;
-  border-radius: 10px;
+  border: 2px solid var(--input-border-color);
+  border-radius: 12px;
   align-items: center;
   max-width: 100%;
   padding: 1rem;
+  background-color: var(--input-div-background-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .VisitorCard .Text .Title {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
 }
 
 .VisitorCard .Text {
@@ -51,6 +97,11 @@ a {
 
 .VisitorCard p {
   margin: 0;
+}
+
+.VisitorCard .Text .Message {
+  color: var(--muted-text-color);
+  font-size: 0.9rem;
 }
 
 .Text .Message {
@@ -71,19 +122,44 @@ a {
   justify-content: space-between;
   min-height: 20vh;
   max-height: 90vh;
-  width: 90vw;
   margin-bottom: 3vh;
+  width: auto;
+  align-self: stretch;
+  padding: 2rem;
+  border: 2px solid var(--text-color);
+  border-radius: 10px;
+  background-color: var(--input-div-background-color);
 }
 
 .AddVisitorCard input {
   font-size: 16px;
   height: 20%;
-  margin-top: 3vh;
-  margin-bottom: 3vh;
+  background-color: var(--input-background-color);
+  border: 1px solid var(--text-color);
+  border-radius: 10px;
+  padding: 0.2rem;
+  max-width: 100%;
+  color: var(--input-div-background-color);
+  margin-bottom: 1vh;
+}
+.AddVisitorCard input::placeholder {
+  color: var(--input-div-background-color);
 }
 
+.AddVisitorCard button {
+  background-color: var(--submit-background-color);
+  border: 1px solid var(--text-color);
+  border-radius: 10px;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.AddVisitorCard input::file-selector-button {
+  background-color: var(--nav-background-color);
+  border: 1px solid var(--text-color);
+  border-radius: 10px;
+}
 li:hover {
-  color: red;
   cursor: default;
 }
 

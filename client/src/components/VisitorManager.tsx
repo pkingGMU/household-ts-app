@@ -6,9 +6,19 @@ import type { VisitorCardType } from "./VisitorCard.tsx";
 export default function VisitorManager() {
     const [cards, setCards] = useState<VisitorCardType[]>([]);
     useEffect(() => {
-        fetchTasks();
-        const interval = setInterval(fetchTasks, 5000);
-        return () => clearInterval(interval);
+        let active = true;
+
+        const fetchLoop = async () => {
+            await fetchTasks();
+            if (active) {
+                setTimeout(fetchLoop, 5000);
+            }
+        };
+
+        fetchLoop();
+        return () => {
+            active = false;
+        };
     }, []);
 
     const fetchTasks = async () => {
