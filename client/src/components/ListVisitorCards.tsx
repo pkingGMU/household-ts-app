@@ -8,7 +8,7 @@ export default function ListVisitorCards({
     cards,
     onDelete,
 }: ListVisitorCardsProps) {
-    const { admin, setAdmin } = useAdmin();
+    const { admin } = useAdmin();
 
     return (
         <>

@@ -2,24 +2,18 @@ import AddVisitorCard from "./AddVisitorCard.tsx";
 import ListVisitorCards from "./ListVisitorCards.tsx";
 import { useState, useEffect } from "react";
 import type { VisitorCardType } from "./VisitorCard.tsx";
-
+import { io } from "socket.io-client";
 export default function VisitorManager() {
     const [cards, setCards] = useState<VisitorCardType[]>([]);
     useEffect(() => {
-        let active = true;
-
-        const fetchLoop = async () => {
-            await fetchTasks();
-            if (active) {
-                setTimeout(fetchLoop, 5000);
-            }
-        };
-
-        fetchLoop();
-        return () => {
-            active = false;
-        };
+        fetchTasks();
     }, []);
+    const socket = io("http://localhost:3000");
+
+    socket.on("visitor", () => {
+        console.log("BRUH IS THIS WORKING");
+        fetchTasks();
+    });
 
     const fetchTasks = async () => {
         const res = await fetch("/api/visitors");

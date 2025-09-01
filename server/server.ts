@@ -4,8 +4,18 @@ import { fileURLToPath } from "url";
 import path, { dirname, join } from "path";
 import multer from "multer";
 import fs from "fs";
+import { Server } from "socket.io";
+import http from "http";
 
 const app = express();
+// Learning Socket Stuff
+const server = http.createServer(app);
+const io = new Server(server, {});
+
+io.on("connection", (socket) => {
+    console.log(socket.id);
+});
+
 app.use(express.json());
 const port = 3000;
 
@@ -114,6 +124,7 @@ type VisitorRow = {
     text: string;
     img: string | null;
     name: string;
+    date: string;
 };
 type VisitorResponse = {
     id: number;
@@ -177,6 +188,8 @@ app.post("/api/visitors", upload.single("eventImage"), (req, res) => {
                 name: nameValue,
                 img: imgFile ? imgFile.filename : null,
             });
+
+            io.emit("visitor");
         },
     );
 });
@@ -210,6 +223,6 @@ app.get("/{*any}", (_, res) => {
     res.sendFile(path.resolve(clientBuildPath, "index.html"));
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
